@@ -23,7 +23,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-!4b*7-yv#*!x+i12nf!b!m6y1762_a(9+ukhlf7(hw^q1)tzey'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
 ALLOWED_HOSTS = ['*']
 
@@ -38,6 +38,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'tailwind',
+
     'theme',
     'site_web',
     'rosetta',
@@ -47,6 +48,7 @@ INSTALLED_APPS = [
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
+    'whitenoise.middleware.WhiteNoiseMiddleware',
     'django.middleware.locale.LocaleMiddleware',
     "django_browser_reload.middleware.BrowserReloadMiddleware",
     'django.middleware.common.CommonMiddleware',
@@ -132,6 +134,8 @@ LOCALE_PATHS = [
 
 STATIC_URL = '/static/'
 STATIC_ROOT = BASE_DIR / 'staticfiles'
+STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
+
 MEDIA_URL = '/media/'
 MEDIA_ROOT = BASE_DIR / 'media'
 
